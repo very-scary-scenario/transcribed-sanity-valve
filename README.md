@@ -6,6 +6,7 @@ discograpy][bc].
 Content warnings for:
 - near-constant 'ironic' homophobia and misogyny
 - crude sexual content, including near-constant references to the performer's genitals
+- 'ironic' racial insensitivity, including caricature of Black identity
 - discussions of unprovoked deadly violence, including depiction of the murder of sex workers
 - arguably transphobia
 - several references to child abuse
