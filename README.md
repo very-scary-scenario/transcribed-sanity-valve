@@ -3,6 +3,14 @@
 We aim to accurately transcribe the entirety of the [Sanity Valve
 discograpy][bc].
 
+Content warnings for:
+- near-constant 'ironic' homophobia and misogyny
+- crude sexual content, including near-constant references to the performer's genitals
+- discussions of unprovoked deadly violence, including depiction of the murder of sex workers
+- arguably transphobia
+- several references to child abuse
+- graphic descriptions of bowel movements
+
 To the small group of people who are Very Scary Scenario, these are culturally
 important songs. We are aware that in many ways, they are directly harmful to
 real people, ourselves included. Our primary goal is that we want to ensure
