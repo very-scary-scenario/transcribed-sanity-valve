@@ -13,15 +13,15 @@
             {{ album.title }} ({{ album.year }})
           </a>
 
-          <ul>
+          <ol>
             {% for track in album.tracks %}
               <li>
                 <a href="#{{ track.title | slugify }}">
-                  {{ track.number }}. {{ track.title }}
+                  {{ track.title }}
                 </a>
               </li>
             {% endfor %}
-          </ul>
+          </ol>
         </li>
       {% endfor %}
     </ul>
