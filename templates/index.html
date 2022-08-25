@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block body %}
-  <h1>Transcribed Sanity Valve</h1>
+  {{ readme | safe }}
+
+  <h2>Albums</h2>
 
   <section id="contents">
     <ul>

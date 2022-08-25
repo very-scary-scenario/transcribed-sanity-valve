@@ -1,4 +1,5 @@
 use crate::read_albums::Album;
+use pulldown_cmark::{Parser, html};
 use serde::Serialize;
 use std::fs;
 use std::path::Path;
@@ -7,7 +8,17 @@ use tera::{Context, Tera};
 
 #[derive(Serialize)]
 struct IndexContext {
+    readme: String,
     albums: Vec<Album>,
+}
+
+fn get_readme() -> String {
+    let readme_source = fs::read_to_string("README.md").expect("failed to read readme");
+    let parser = Parser::new(&readme_source);
+    let mut readme_html = String::new();
+    html::push_html(&mut readme_html, parser);
+
+    readme_html
 }
 
 pub fn build_site(albums: Vec<Album>) {
@@ -40,8 +51,10 @@ pub fn build_site(albums: Vec<Album>) {
         target_dir.join("index.html"),
         tera.render(
             "index.html",
-            &Context::from_serialize(IndexContext { albums: albums })
-                .expect("failed to build context"),
+            &Context::from_serialize(IndexContext {
+                albums: albums,
+                readme: get_readme(),
+            }).expect("failed to build context"),
         )
         .expect("failed to render index"),
     )
