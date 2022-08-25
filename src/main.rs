@@ -1,3 +1,5 @@
+mod build;
+
 fn main() {
-    println!("Hello, world!");
+    build::build_site()
 }
