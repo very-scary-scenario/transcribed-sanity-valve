@@ -20,10 +20,10 @@ fn read_dir<T: ReadFromDir> (path: &str) -> Vec<T> {
 }
 
 #[derive(Debug)]
-struct Track {
-    number: u8,
-    title: String,
-    lyrics: String,
+pub struct Track {
+    pub number: u8,
+    pub title: String,
+    pub lyrics: String,
 }
 
 impl ReadFromDir for Track {
@@ -46,10 +46,10 @@ impl ReadFromDir for Track {
 }
 
 #[derive(Debug)]
-struct Album {
-    year: u16,
-    title: String,
-    tracks: Vec<Track>,
+pub struct Album {
+    pub year: u16,
+    pub title: String,
+    pub tracks: Vec<Track>,
 }
 
 impl ReadFromDir for Album {
@@ -65,7 +65,6 @@ impl ReadFromDir for Album {
     }
 }
 
-pub fn build_site() {
-    let albums: Vec<Album> = read_dir("albums");
-    dbg!(albums);
+pub fn read_albums() -> Vec<Album> {
+    read_dir("albums")
 }

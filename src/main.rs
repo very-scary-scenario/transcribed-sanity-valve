@@ -1,5 +1,6 @@
-mod build;
+mod read_albums;
 
 fn main() {
-    build::build_site()
+    let albums = read_albums::read_albums();
+    dbg!(albums);
 }
