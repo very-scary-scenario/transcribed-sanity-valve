@@ -1,7 +1,7 @@
 # Transcribed Sanity Valve
 
 We aim to accurately transcribe the entirety of the [Sanity Valve
-discograpy][bc].
+discography][bc].
 
 Content warnings for:
 - near-constant 'ironic' homophobia and misogyny
