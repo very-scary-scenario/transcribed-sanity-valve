@@ -8,7 +8,7 @@
       {% for album in albums %}
         <li>
           <a href="#{{ album.title | slugify }}">
-            {{ album.title }}
+            {{ album.title }} ({{ album.year }})
           </a>
 
           <ul>
@@ -26,7 +26,7 @@
   </section>
 
   {% for album in albums %}
-    <h2 id="{{ album.title | slugify }}">{{ album.title }}</h2>
+    <h2 id="{{ album.title | slugify }}">{{ album.title }} ({{ album.year }})</h2>
 
     {% for track in album.tracks %}
       <section id="{{ track.title | slugify }}">
