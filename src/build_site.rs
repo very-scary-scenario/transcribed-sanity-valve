@@ -1,5 +1,5 @@
 use crate::read_albums::Album;
-use pulldown_cmark::{Parser, html};
+use pulldown_cmark::{html, Parser};
 use serde::Serialize;
 use std::fs;
 use std::path::Path;
@@ -54,7 +54,8 @@ pub fn build_site(albums: Vec<Album>) {
             &Context::from_serialize(IndexContext {
                 albums: albums,
                 readme: get_readme(),
-            }).expect("failed to build context"),
+            })
+            .expect("failed to build context"),
         )
         .expect("failed to render index"),
     )
