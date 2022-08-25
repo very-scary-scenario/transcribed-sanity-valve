@@ -1,7 +1,38 @@
 {% extends "base.html" %}
 
 {% block body %}
+  <h1>Transcribed Sanity Valve</h1>
+
+  <section id="contents">
+    <ul>
+      {% for album in albums %}
+        <li>
+          <a href="#{{ album.title | slugify }}">
+            {{ album.title }}
+          </a>
+
+          <ul>
+            {% for track in album.tracks %}
+              <li>
+                <a href="#{{ track.title | slugify }}">
+                  {{ track.number }}. {{ track.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+
   {% for album in albums %}
-    <p>{{ album.title }}</p>
+    <h2 id="{{ album.title | slugify }}">{{ album.title }}</h2>
+
+    {% for track in album.tracks %}
+      <section id="{{ track.title | slugify }}">
+        <h3>{{ track.number }}. {{ track.title }}</h3>
+        <pre>{{ track.lyrics }}</pre>
+      </section>
+    {% endfor %}
   {% endfor %}
 {% endblock body %}

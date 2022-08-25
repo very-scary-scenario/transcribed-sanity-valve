@@ -13,9 +13,11 @@ struct IndexContext {
 pub fn build_site(albums: Vec<Album>) {
     let target_dir: &Path = Path::new("_html");
 
-    match fs::remove_dir(target_dir) {
+    match fs::remove_dir_all(target_dir) {
         Ok(()) => (),
-        Err(_) => (),
+        Err(e) => {
+            println!("Not deleting existing build dir: {}", e)
+        }
     }
 
     match fs::create_dir(target_dir) {
