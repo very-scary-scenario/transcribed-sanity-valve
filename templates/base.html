@@ -3,6 +3,28 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Transcribed Sanity Valve{% endblock title %}</title>
+
+  <style>
+    body {
+      max-width: 50em;
+      font-family: sans-serif;
+      margin: 0 auto;
+      padding: 0 2vw;
+      background-color: #111;
+      color: #eee;
+    }
+
+    a[href] { color: #6d6; }
+    a[href]:hover { color: #eee; }
+
+    ul {
+      padding-left: 1.5em;
+    }
+
+    pre {
+      white-space: pre-wrap;
+    }
+  </style>
 </head>
 <body>
   {% block body %}
