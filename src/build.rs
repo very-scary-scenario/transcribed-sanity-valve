@@ -1,6 +1,24 @@
 use std::fs;
 use regex::Regex;
 
+trait ReadFromDir {
+    fn from_direntry(entry: fs::DirEntry) -> Option<Self> where Self: Sized;
+}
+
+fn read_dir<T: ReadFromDir> (path: &str) -> Vec<T> {
+    let mut things = Vec::new();
+
+    for path in fs::read_dir(path).expect("could not list directory") {
+        let entry = path.expect("could not read album directory");
+        match T::from_direntry(entry) {
+            Some(t) => things.push(t),
+            None => (),
+        }
+    }
+
+    things
+}
+
 #[derive(Debug)]
 struct Track {
     number: u8,
@@ -8,7 +26,7 @@ struct Track {
     lyrics: String,
 }
 
-impl Track {
+impl ReadFromDir for Track {
     fn from_direntry(entry: fs::DirEntry) -> Option<Track> {
         let file_name = entry.file_name().into_string().expect("could not convert track filename");
         let re_match = match Regex::new(r"^(\d+)\. (.*)\.txt$").unwrap().captures(&file_name) {
@@ -27,20 +45,6 @@ impl Track {
     }
 }
 
-fn get_tracks(entry: fs::DirEntry) -> Vec<Track> {
-    let mut tracks = Vec::new();
-
-    for path in fs::read_dir(entry.path()).expect("could not list album directory") {
-        let entry = path.expect("could not read track directory");
-        match Track::from_direntry(entry) {
-            Some(t) => tracks.push(t),
-            None => (),
-        }
-    }
-
-    tracks
-}
-
 #[derive(Debug)]
 struct Album {
     year: u16,
@@ -48,31 +52,20 @@ struct Album {
     tracks: Vec<Track>,
 }
 
-impl Album {
-    fn from_direntry(entry: fs::DirEntry) -> Album {
+impl ReadFromDir for Album {
+    fn from_direntry(entry: fs::DirEntry) -> Option<Album> {
         let folder_name = entry.file_name().into_string().expect("could not convert folder name");
         let re_match = Regex::new(r"^(\d+) - (.*)$").unwrap().captures(&folder_name).expect("could not parse folder name");
 
-        Album {
+        Some(Album {
             year: re_match[1].parse().expect("could not find album year"),
             title: String::from(&re_match[2]),
-            tracks: get_tracks(entry),
-        }
+            tracks: read_dir(&entry.path().into_os_string().into_string().expect("could not convert folder path")),
+        })
     }
-}
-
-fn get_albums() -> Vec<Album> {
-    let mut albums = Vec::new();
-
-    for path in fs::read_dir("albums").expect("could not list albums directory") {
-        let entry = path.expect("could not read album directory");
-        albums.push(Album::from_direntry(entry))
-    }
-
-    albums
 }
 
 pub fn build_site() {
-    let albums = get_albums();
+    let albums: Vec<Album> = read_dir("albums");
     dbg!(albums);
 }
