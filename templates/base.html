@@ -10,12 +10,12 @@
       font-family: sans-serif;
       margin: 0 auto;
       padding: 0 2vw;
-      background-color: #111;
-      color: #eee;
+      background-color: #eee;
+      color: #111;
     }
 
-    a[href] { color: #6d6; }
-    a[href]:hover { color: #eee; }
+    a[href] { color: #2a2; }
+    a[href]:hover { color: #111; }
 
     ul, ol {
       padding-left: 1.5em;
@@ -42,7 +42,7 @@
       content: " ";
       width: 100%;
       height: 3em;
-      background: linear-gradient(#111, #1110);
+      background: linear-gradient(#eee, #eee0);
       z-index: -1;
       pointer-events: none;
     }
@@ -51,6 +51,19 @@
       padding: 2em 0;
       text-align: center;
     }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #111;
+        color: #eee;
+      }
+      a[href] { color: #6d6; }
+      a[href]:hover { color: #eee; }
+      section > h3:first-child::before {
+        background: linear-gradient(#111, #1110);
+      }
+    }
+
   </style>
 </head>
 <body>
