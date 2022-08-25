@@ -14,4 +14,4 @@ jobs:
       - uses: actions/upload-pages-artifact@v1.0.3
         with:
           path: _html
-      - uses: deploy-pages@v1.0.10
+      - uses: actions/deploy-pages@v1.0.10
