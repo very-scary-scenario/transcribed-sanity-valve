@@ -1,4 +1,5 @@
 use regex::Regex;
+use serde::Serialize;
 use std::fs;
 
 trait ReadFromDir {
@@ -21,7 +22,7 @@ fn read_dir<T: ReadFromDir>(path: &str) -> Vec<T> {
     things
 }
 
-#[derive(Debug)]
+#[derive(Serialize)]
 pub struct Track {
     pub number: u8,
     pub title: String,
@@ -53,7 +54,7 @@ impl ReadFromDir for Track {
     }
 }
 
-#[derive(Debug)]
+#[derive(Serialize)]
 pub struct Album {
     pub year: u16,
     pub title: String,

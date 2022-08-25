@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 regex = "1"
 tera = "1"
+serde = { version = "1", features = ["derive"] }
