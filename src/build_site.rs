@@ -1,8 +1,8 @@
+use crate::read_albums::Album;
+use serde::Serialize;
 use std::fs;
 use std::path::Path;
 use std::process::exit;
-use crate::read_albums::Album;
-use serde::Serialize;
 use tera::{Context, Tera};
 
 #[derive(Serialize)]
@@ -36,12 +36,14 @@ pub fn build_site(albums: Vec<Album>) {
         }
     };
 
-    fs::write(target_dir.join("index.html"),
+    fs::write(
+        target_dir.join("index.html"),
         tera.render(
             "index.html",
             &Context::from_serialize(IndexContext { albums: albums })
                 .expect("failed to build context"),
         )
-        .expect("failed to render index")
-    ).expect("failed to write index.html");
+        .expect("failed to render index"),
+    )
+    .expect("failed to write index.html");
 }

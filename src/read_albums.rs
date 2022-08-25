@@ -8,7 +8,7 @@ trait ReadFromDir {
         Self: Sized;
 }
 
-fn read_dir<T: ReadFromDir>(path: &str) -> Vec<T> {
+fn read_dir<T: ReadFromDir + Ord>(path: &str) -> Vec<T> {
     let mut things = Vec::new();
 
     for path in fs::read_dir(path).expect("could not list directory") {
@@ -18,11 +18,11 @@ fn read_dir<T: ReadFromDir>(path: &str) -> Vec<T> {
             None => (),
         }
     }
-
+    things.sort_unstable();
     things
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Track {
     pub number: u8,
     pub title: String,
@@ -54,7 +54,7 @@ impl ReadFromDir for Track {
     }
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Album {
     pub year: u16,
     pub title: String,
@@ -71,7 +71,6 @@ impl ReadFromDir for Album {
             .unwrap()
             .captures(&folder_name)
             .expect("could not parse folder name");
-
         Some(Album {
             year: re_match[1].parse().expect("could not find album year"),
             title: String::from(&re_match[2]),
