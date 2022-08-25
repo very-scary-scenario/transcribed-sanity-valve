@@ -1,11 +1,13 @@
-use std::fs;
 use regex::Regex;
+use std::fs;
 
 trait ReadFromDir {
-    fn from_direntry(entry: fs::DirEntry) -> Option<Self> where Self: Sized;
+    fn from_direntry(entry: fs::DirEntry) -> Option<Self>
+    where
+        Self: Sized;
 }
 
-fn read_dir<T: ReadFromDir> (path: &str) -> Vec<T> {
+fn read_dir<T: ReadFromDir>(path: &str) -> Vec<T> {
     let mut things = Vec::new();
 
     for path in fs::read_dir(path).expect("could not list directory") {
@@ -28,12 +30,18 @@ pub struct Track {
 
 impl ReadFromDir for Track {
     fn from_direntry(entry: fs::DirEntry) -> Option<Track> {
-        let file_name = entry.file_name().into_string().expect("could not convert track filename");
-        let re_match = match Regex::new(r"^(\d+)\. (.*)\.txt$").unwrap().captures(&file_name) {
+        let file_name = entry
+            .file_name()
+            .into_string()
+            .expect("could not convert track filename");
+        let re_match = match Regex::new(r"^(\d+)\. (.*)\.txt$")
+            .unwrap()
+            .captures(&file_name)
+        {
             Some(m) => m,
             None => {
                 println!("Ignoring {}", file_name);
-                return None
+                return None;
             }
         };
 
@@ -54,13 +62,25 @@ pub struct Album {
 
 impl ReadFromDir for Album {
     fn from_direntry(entry: fs::DirEntry) -> Option<Album> {
-        let folder_name = entry.file_name().into_string().expect("could not convert folder name");
-        let re_match = Regex::new(r"^(\d+) - (.*)$").unwrap().captures(&folder_name).expect("could not parse folder name");
+        let folder_name = entry
+            .file_name()
+            .into_string()
+            .expect("could not convert folder name");
+        let re_match = Regex::new(r"^(\d+) - (.*)$")
+            .unwrap()
+            .captures(&folder_name)
+            .expect("could not parse folder name");
 
         Some(Album {
             year: re_match[1].parse().expect("could not find album year"),
             title: String::from(&re_match[2]),
-            tracks: read_dir(&entry.path().into_os_string().into_string().expect("could not convert folder path")),
+            tracks: read_dir(
+                &entry
+                    .path()
+                    .into_os_string()
+                    .into_string()
+                    .expect("could not convert folder path"),
+            ),
         })
     }
 }
