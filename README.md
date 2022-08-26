@@ -8,8 +8,9 @@ Content warnings for:
 - crude sexual content, including near-constant references to the performer's genitals
 - 'ironic' racial insensitivity, including caricature of Black identity
 - discussions of unprovoked deadly violence, including depiction of the murder of sex workers
-- arguably transphobia
-- several references to child abuse
+- references to child sexual abuse
+- references to animal cruelty
+- possibly transphobia
 - graphic descriptions of bowel movements
 
 To the small group of people who are [Very Scary Scenario][vss], these are
