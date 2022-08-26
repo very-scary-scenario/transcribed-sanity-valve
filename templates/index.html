@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block body %}
+{% block header %}
   {{ readme | safe }}
 
   <h2>Albums</h2>
@@ -26,7 +26,9 @@
       {% endfor %}
     </ul>
   </section>
+{% endblock %}
 
+{% block content %}
   {% for album in albums %}
     <h2 id="{{ album.title | slugify }}">{{ album.title }} ({{ album.year }})</h2>
 
@@ -37,4 +39,4 @@
       </section>
     {% endfor %}
   {% endfor %}
-{% endblock body %}
+{% endblock %}
