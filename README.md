@@ -10,7 +10,6 @@ Content warnings for:
 - discussions of unprovoked deadly violence, including depiction of the murder of sex workers
 - references to child sexual abuse
 - references to animal cruelty
-- possibly transphobia
 - graphic descriptions of bowel movements
 
 To the small group of people who are [Very Scary Scenario][vss], these are
