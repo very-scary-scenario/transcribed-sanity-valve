@@ -38,6 +38,7 @@ fn lyrics(albums: &Vec<Album>) -> Markup {
                     @for line in &track.lyrics {
                         @for phrase in &line.phrases {
                             span .lyric title=(phrase.attribution) { (phrase.content) }
+                            " "
                         }
                         br;
                     }
