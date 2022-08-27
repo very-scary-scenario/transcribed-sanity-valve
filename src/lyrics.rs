@@ -27,7 +27,7 @@ pub struct Line {
 impl Line {
     pub fn parse_lyrics(input: &str) -> Vec<Line> {
         lazy_static! {
-            static ref RE: Regex = Regex::new(r"^((\s+)?([^:]+): )?(.*)$").unwrap();
+            static ref RE: Regex = Regex::new(r"^((\s+)?([^:]+):: )?(.*)$").unwrap();
         }
 
         let mut lines = Vec::new();
