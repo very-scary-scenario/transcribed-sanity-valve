@@ -1,5 +1,5 @@
 use crate::albums::Album;
-use maud::{html, PreEscaped, DOCTYPE};
+use maud::{html, PreEscaped, Markup, DOCTYPE};
 use pulldown_cmark::{html, Parser};
 use std::fs;
 use std::path::Path;
@@ -26,6 +26,44 @@ fn get_readme() -> String {
     html::push_html(&mut readme_html, parser);
 
     readme_html
+}
+
+fn lyrics(albums: &Vec<Album>) -> Markup {
+    return html!(
+        @for album in albums {
+            h2 #(slugify(&album.title)) { (album.title) }
+            @for track in &album.tracks {
+                section #(slugify(&track.title)) {
+                    h3 { (format!("{}. {}", track.number, track.title)) }
+                    @for line in &track.lyrics {
+                        @for phrase in &line.phrases {
+                            span .lyric title=(phrase.attribution) { (phrase.content) }
+                        }
+                        br;
+                    }
+                }
+            }
+        }
+    )
+}
+
+fn contents(albums: &Vec<Album>) -> Markup {
+    html!(
+        ul {
+            @for album in albums {
+                li {
+                    a href=(format!("#{}", slugify(&album.title))) { (album.title) }
+                    ol {
+                        @for track in &album.tracks {
+                            li {
+                                a href=(format!("#{}", slugify(&track.title))) { (track.title) }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    )
 }
 
 pub fn build_site(albums: Vec<Album>) {
@@ -60,40 +98,9 @@ pub fn build_site(albums: Vec<Album>) {
                 header {
                     (PreEscaped(get_readme()))
                     h2 { "Albums" }
-
-                    section #"contents" {
-                        ul {
-                            @for album in &albums {
-                                li {
-                                    a href=(format!("#{}", slugify(&album.title))) { (album.title) }
-                                    ol {
-                                        @for track in &album.tracks {
-                                            li {
-                                                a href=(format!("#{}", slugify(&track.title))) { (track.title) }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    section #"contents" { (contents(&albums)) }
                 }
-                article {
-                    @for album in &albums {
-                        h2 #(slugify(&album.title)) { (album.title) }
-                        @for track in &album.tracks {
-                            section #(slugify(&track.title)) {
-                                h3 { (format!("{}. {}", track.number, track.title)) }
-                                @for line in &track.lyrics {
-                                    @for phrase in &line.phrases {
-                                        span .lyric title=(phrase.attribution) { (phrase.content) }
-                                    }
-                                    br;
-                                }
-                            }
-                        }
-                    }
-                }
+                article { (lyrics(&albums)) }
                 footer {
                     p {
                         "a " a href="https://vscary.co/" { "Very Scary Scenario" } " production"
