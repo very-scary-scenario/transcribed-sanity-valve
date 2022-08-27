@@ -1,6 +1,5 @@
 use crate::lyrics::Line;
 use regex::Regex;
-use serde::Serialize;
 use std::cmp::Ordering;
 use std::fs;
 
@@ -24,7 +23,7 @@ fn read_dir<T: ReadFromDir + Ord>(path: &str) -> Vec<T> {
     things
 }
 
-#[derive(Serialize, PartialEq, Eq)]
+#[derive(PartialEq, Eq)]
 pub struct Track {
     pub number: u8,
     pub title: String,
@@ -70,7 +69,7 @@ impl ReadFromDir for Track {
     }
 }
 
-#[derive(Serialize, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(PartialEq, Eq, PartialOrd, Ord)]
 pub struct Album {
     pub year: u16,
     pub title: String,

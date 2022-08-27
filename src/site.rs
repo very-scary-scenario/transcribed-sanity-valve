@@ -1,15 +1,22 @@
 use crate::albums::Album;
+use maud::{html, PreEscaped, DOCTYPE};
 use pulldown_cmark::{html, Parser};
-use serde::Serialize;
 use std::fs;
 use std::path::Path;
 use std::process::exit;
-use tera::{Context, Tera};
 
-#[derive(Serialize)]
-struct IndexContext {
-    readme: String,
-    albums: Vec<Album>,
+fn slugify(input: &str) -> String {
+    let mut output = String::new();
+
+    for letter in input.to_ascii_lowercase().chars() {
+        if letter == ' ' {
+            output.push('-');
+        } else if letter.is_ascii_lowercase() {
+            output.push(letter);
+        }
+    }
+
+    output
 }
 
 fn get_readme() -> String {
@@ -39,25 +46,66 @@ pub fn build_site(albums: Vec<Album>) {
         }
     }
 
-    let tera = match Tera::new("templates/**/*.html") {
-        Ok(t) => t,
-        Err(e) => {
-            println!("Parsing error(s): {}", e);
-            exit(1);
-        }
-    };
+    let markup = html!(
+        (DOCTYPE)
+        html {
+            head {
+                meta charset="utf-8" {}
+                title { "Transcribed Sanity Valve" }
+                style {
+                    (PreEscaped(fs::read_to_string("style.css").expect("failed to read styles")))
+                }
+            }
+            body {
+                header {
+                    (PreEscaped(get_readme()))
+                    h2 { "Albums" }
 
-    fs::write(
-        target_dir.join("index.html"),
-        tera.render(
-            "index.html",
-            &Context::from_serialize(IndexContext {
-                albums: albums,
-                readme: get_readme(),
-            })
-            .expect("failed to build context"),
-        )
-        .expect("failed to render index"),
-    )
-    .expect("failed to write index.html");
+                    section #"contents" {
+                        ul {
+                            @for album in &albums {
+                                li {
+                                    a href=(format!("#{}", slugify(&album.title))) { (album.title) }
+                                    ol {
+                                        @for track in &album.tracks {
+                                            li {
+                                                a href=(format!("#{}", slugify(&track.title))) { (track.title) }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                article {
+                    @for album in &albums {
+                        h2 #(slugify(&album.title)) { (album.title) }
+                        @for track in &album.tracks {
+                            section #(slugify(&track.title)) {
+                                h3 { (format!("{}. {}", track.number, track.title)) }
+                                @for line in &track.lyrics {
+                                    @for phrase in &line.phrases {
+                                        span .lyric title=(phrase.attribution) { (phrase.content) }
+                                    }
+                                    br;
+                                }
+                            }
+                        }
+                    }
+                }
+                footer {
+                    p {
+                        "a " a href="https://vscary.co/" { "Very Scary Scenario" } " production"
+                    }
+                    p {
+                        a href="https://github.com/very-scary-scenario/transcribed-sanity-valve/" { "contributions welcome" }
+                    }
+                }
+            }
+        }
+    );
+
+    fs::write(target_dir.join("index.html"), markup.into_string())
+        .expect("failed to write index.html");
 }

@@ -1,0 +1,82 @@
+:root {
+  --bg: #fff;
+  --bg-faded: #eee0;
+  --fg: #111;
+  --link: #181;
+
+  --gish: #a11;
+  --mos-prob: #177;
+}
+
+body {
+  max-width: 50em;
+  font-family: sans-serif;
+  margin: 0 auto;
+  padding: 0 2vw;
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+body::before {
+  position: fixed;
+  top: 0;
+  left: 0;
+  content: " ";
+  width: 100%;
+  height: 4em;
+  background: linear-gradient(var(--bg), var(--bg-faded));
+  pointer-events: none;
+  z-index: 1;
+}
+
+header, footer, h1, h2, h3 {
+  position: relative;
+  z-index: 2
+}
+
+a[href] { color: var(--link); }
+a[href]:hover { color: var(--fg); }
+
+ul, ol {
+  padding-left: 1.5em;
+}
+
+.lyric {
+  white-space: pre-wrap;
+  z-index: 0;
+}
+
+.lyric[title="Gishnchips"] { color: var(--gish); }
+
+.lyric[title="Doreen (Jewdacris)"],
+.lyric[title="Jewdacris"],
+.lyric[title="Mos Prob"] {
+  color: var(--mos-prob);
+}
+
+section {
+  position: relative;
+}
+
+section > h3:first-child {
+  position: sticky;
+  top: 0;
+  padding-top: .2em;
+}
+
+footer {
+  padding: 2em 0;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111;
+    --bg-faded: #1110;
+    --fg: #eee;
+    --link: #6d6;
+
+    --gish: #d66;
+    --mos-prob: #6dd;
+  }
+}

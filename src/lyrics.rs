@@ -1,6 +1,5 @@
 use lazy_static::lazy_static;
 use regex::Regex;
-use serde::Serialize;
 use std::collections::HashMap;
 
 lazy_static! {
@@ -13,13 +12,13 @@ lazy_static! {
     ]);
 }
 
-#[derive(Serialize, PartialEq, Eq)]
+#[derive(PartialEq, Eq)]
 pub struct Phrase {
     pub content: String,
     pub attribution: String,
 }
 
-#[derive(Serialize, PartialEq, Eq)]
+#[derive(PartialEq, Eq)]
 pub struct Line {
     pub phrases: Vec<Phrase>,
 }
