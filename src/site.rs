@@ -89,7 +89,8 @@ pub fn build_site(albums: Vec<Album>) {
         (DOCTYPE)
         html {
             head {
-                meta charset="utf-8" {}
+                meta charset="utf-8";
+                meta name="viewport" content="width=device-width, initial-scale=1";
                 title { "Transcribed Sanity Valve" }
                 style {
                     (PreEscaped(fs::read_to_string("style.css").expect("failed to read styles")))
