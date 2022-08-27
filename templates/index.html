@@ -35,8 +35,12 @@
     {% for track in album.tracks %}
       <section id="{{ track.title | slugify }}">
         <h3>{{ track.number }}. {{ track.title }}</h3>
-        <pre>{% for line in track.lyrics %}{% for phrase in line.phrases %}<span title="{{ phrase.attribution }}">{{ phrase.content }}</span>{% endfor %}
-{% endfor %}</pre>
+        {% for line in track.lyrics %}
+          {% for phrase in line.phrases %}
+            <span class="lyric" title="{{ phrase.attribution }}">{{ phrase.content }}</span>
+          {% endfor %}
+          <br/>
+        {% endfor %}
       </section>
     {% endfor %}
   {% endfor %}
