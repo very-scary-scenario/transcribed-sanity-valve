@@ -66,7 +66,7 @@ M:: I'm calling from a really call centre?
 
 G:: No you're not, you're standing next to me
 M:: I thought we'd built up rapport, don't be like this-
-G;: Turn around
+G:: Turn around
 M:: …I really want a flapjack
 G:: You know what? Fuck your flapjacks
 Fuck your flapjacks, just fuck the fuck off, Mos Prob, okay?
