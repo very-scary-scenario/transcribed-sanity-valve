@@ -62,7 +62,7 @@ impl Line {
                 None => (),
             }
 
-            if line_is_over {
+            if line_is_over && line_phrases.len() > 0 {
                 lines.push(Line {
                     phrases: line_phrases,
                 });
