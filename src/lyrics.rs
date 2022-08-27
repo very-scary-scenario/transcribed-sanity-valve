@@ -7,7 +7,7 @@ lazy_static! {
     static ref ALIASES: HashMap<&'static str, &'static str> = HashMap::from([
         ("B", "Both"),
         ("G", "Gishnchips"),
-        ("P", "Mos Prob"),
+        ("M", "Mos Prob"),
         ("J", "Jewdacris"),
         ("?", ""),
     ]);
