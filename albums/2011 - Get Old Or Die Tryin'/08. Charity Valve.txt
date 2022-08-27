@@ -56,7 +56,8 @@ and all animals will be dead eventually
 A tenner?
   G:: No.
   M:: A fiver?
-  G:: No! Umm… 70p?
+  G:: No!
+  M:: Umm… 70p?
 
 G:: Hang on, this… no, no this is unfeasible
 it's unreasonable to think this will save any puppies at all
