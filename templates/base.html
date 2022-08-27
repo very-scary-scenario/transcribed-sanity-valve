@@ -5,13 +5,23 @@
   <title>{% block title %}Transcribed Sanity Valve{% endblock title %}</title>
 
   <style>
+    :root {
+      --bg: #eee;
+      --bg-faded: #eee0;
+      --fg: #111;
+      --link: #2a2;
+
+      --gish: #a22;
+      --mos-prob: #299;
+    }
+
     body {
       max-width: 50em;
       font-family: sans-serif;
       margin: 0 auto;
       padding: 0 2vw;
-      background-color: #eee;
-      color: #111;
+      background-color: var(--bg);
+      color: var(--fg);
     }
 
     body::before {
@@ -21,7 +31,7 @@
       content: " ";
       width: 100%;
       height: 4em;
-      background: linear-gradient(#eee, #eee0);
+      background: linear-gradient(var(--bg), var(--bg-faded));
       pointer-events: none;
       z-index: 1;
     }
@@ -31,8 +41,8 @@
       z-index: 2
     }
 
-    a[href] { color: #2a2; }
-    a[href]:hover { color: #111; }
+    a[href] { color: var(--link); }
+    a[href]:hover { color: var(--fg); }
 
     ul, ol {
       padding-left: 1.5em;
@@ -43,13 +53,8 @@
       z-index: 0;
     }
 
-    .lyric[title="Gishnchips"] {
-      color: #d66;
-    }
-
-    .lyric[title="Jewdacris"] {
-      color: #6dd;
-    }
+    .lyric[title="Gishnchips"] { color: var(--gish); }
+    .lyric[title="Jewdacris"] { color: var(--mos-prob); }
 
     section {
       position: relative;
@@ -67,14 +72,11 @@
     }
 
     @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #111;
-        color: #eee;
-      }
-      a[href] { color: #6d6; }
-      a[href]:hover { color: #eee; }
-      body::before {
-        background: linear-gradient(#111, #1110);
+      :root {
+        --bg: #111;
+        --bg-faded: #1110;
+        --fg: #eee;
+        --link: #6d6;
       }
     }
 
