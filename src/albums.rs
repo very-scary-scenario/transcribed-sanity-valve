@@ -1,5 +1,7 @@
+use crate::lyrics::Line;
 use regex::Regex;
 use serde::Serialize;
+use std::cmp::Ordering;
 use std::fs;
 
 trait ReadFromDir {
@@ -22,11 +24,23 @@ fn read_dir<T: ReadFromDir + Ord>(path: &str) -> Vec<T> {
     things
 }
 
-#[derive(Serialize, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Serialize, PartialEq, Eq)]
 pub struct Track {
     pub number: u8,
     pub title: String,
-    pub lyrics: String,
+    pub lyrics: Vec<Line>,
+}
+
+impl PartialOrd for Track {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        return Some(self.number.cmp(&other.number));
+    }
+}
+
+impl Ord for Track {
+    fn cmp(&self, other: &Self) -> Ordering {
+        return self.number.cmp(&other.number);
+    }
 }
 
 impl ReadFromDir for Track {
@@ -49,7 +63,9 @@ impl ReadFromDir for Track {
         Some(Track {
             number: re_match[1].parse().expect("could not find track number"),
             title: String::from(&re_match[2]),
-            lyrics: fs::read_to_string(entry.path()).expect("could not read lyrics"),
+            lyrics: Line::parse_lyrics(
+                &fs::read_to_string(entry.path()).expect("could not read lyrics"),
+            ),
         })
     }
 }

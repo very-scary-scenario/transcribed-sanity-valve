@@ -630,6 +630,7 @@ dependencies = [
 name = "transcribed-sanity-valve"
 version = "0.1.0"
 dependencies = [
+ "lazy_static",
  "pulldown-cmark",
  "regex",
  "serde",
