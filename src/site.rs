@@ -1,4 +1,4 @@
-use crate::read_albums::Album;
+use crate::albums::Album;
 use pulldown_cmark::{html, Parser};
 use serde::Serialize;
 use std::fs;

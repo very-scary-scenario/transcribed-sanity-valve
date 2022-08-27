@@ -1,7 +1,7 @@
-mod build_site;
-mod read_albums;
+mod site;
+mod albums;
 
 fn main() {
-    let albums = read_albums::read_albums();
-    build_site::build_site(albums);
+    let albums = albums::read_albums();
+    site::build_site(albums);
 }
