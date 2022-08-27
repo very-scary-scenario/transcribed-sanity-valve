@@ -38,7 +38,6 @@ impl Line {
         for input_line in input.lines() {
             let mut line_is_over = true;
             let cap = RE.captures(input_line).expect("could not parse line");
-            dbg!(&cap);
             let content = cap.get(4).expect("could not get line content").as_str();
 
             match cap.get(3) {
