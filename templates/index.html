@@ -37,7 +37,12 @@
         <h3>{{ track.number }}. {{ track.title }}</h3>
         {% for line in track.lyrics %}
           {% for phrase in line.phrases %}
-            <span class="lyric" title="{{ phrase.attribution }}">{{ phrase.content }}</span>
+            <span
+              class="lyric"
+              {% if phrase.attribution %}
+                data-attrib="{{ phrase.attribution }}"
+              {% endif %}
+            >{{ phrase.content }}</span>
           {% endfor %}
           <br/>
         {% endfor %}

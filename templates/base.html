@@ -49,16 +49,43 @@
     }
 
     .lyric {
+      --attrib: var(--fg);
+
+      position: relative;
       white-space: pre-wrap;
       z-index: 0;
+      color: var(--attrib);
     }
 
-    .lyric[title="Gishnchips"] { color: var(--gish); }
+    .lyric[data-attrib]:hover::after,
+    .lyric[data-attrib]:hover::before {
+      content: attr(data-attrib);
+      white-space: nowrap;
+      display: block;
+      position: absolute;
+      left: -.3em;
+      top: -1.5em;
+      pointer-events: none;
+      padding: 0 .3em;
+    }
+    .lyric[data-attrib]:hover::after {
+      background: linear-gradient(to right, var(--bg), var(--bg-faded));
+      padding-right: 5em;
+      color: var(--fg);
+    }
+    .lyric[data-attrib]:hover::before{
+      padding-bottom: 1.5em;
+      border-left: 1px solid var(--attrib);
+      margin-left: -1px;
+      color: var(--bg-faded);
+    }
 
-    .lyric[title="Doreen (Jewdacris)"],
-    .lyric[title="Jewdacris"],
-    .lyric[title="Mos Prob"] {
-      color: var(--mos-prob);
+    .lyric[data-attrib="Gishnchips"] { --attrib: var(--gish); }
+
+    .lyric[data-attrib="Doreen (Jewdacris)"],
+    .lyric[data-attrib="Jewdacris"],
+    .lyric[data-attrib="Mos Prob"] {
+      --attrib: var(--mos-prob);
     }
 
     section {
