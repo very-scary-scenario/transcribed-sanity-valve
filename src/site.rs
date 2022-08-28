@@ -5,6 +5,9 @@ use std::fs;
 use std::path::Path;
 use std::process::exit;
 
+const README_SOURCE: &'static str = include_str!("README.md");
+const STYLES: &'static str = include_str!("style.css");
+
 fn slugify(input: &str) -> String {
     let mut output = String::new();
 
@@ -20,8 +23,7 @@ fn slugify(input: &str) -> String {
 }
 
 fn get_readme() -> String {
-    let readme_source = fs::read_to_string("README.md").expect("failed to read readme");
-    let parser = Parser::new(&readme_source);
+    let parser = Parser::new(&README_SOURCE);
     let mut readme_html = String::new();
     html::push_html(&mut readme_html, parser);
 
@@ -92,9 +94,7 @@ pub fn build_site(albums: Vec<Album>) {
                 meta charset="utf-8";
                 meta name="viewport" content="width=device-width, initial-scale=1";
                 title { "Transcribed Sanity Valve" }
-                style {
-                    (PreEscaped(fs::read_to_string("style.css").expect("failed to read styles")))
-                }
+                style { (PreEscaped(STYLES)) }
             }
             body {
                 header {
