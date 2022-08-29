@@ -5,7 +5,7 @@ use std::fs;
 use std::path::Path;
 use std::process::exit;
 
-const README_SOURCE: &'static str = include_str!("README.md");
+const README_SOURCE: &'static str = include_str!("../README.md");
 const STYLES: &'static str = include_str!("style.css");
 
 fn slugify(input: &str) -> String {
