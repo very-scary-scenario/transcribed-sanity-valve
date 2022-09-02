@@ -1,9 +1,9 @@
-Windows 95
+C:: Windows 95
 Sega Mega Drive
 Nintendo 64
 When Shearer used to score
 
-Back when Ant and Dec had successful rap careers
+M:: Back when Ant and Dec had successful rap careers
 when Mr. Motivator came on I would clap and cheer
 when that was near I wasn't all about gash and beer
 I just gamed and Simply Red Holding Back the Years
@@ -19,20 +19,24 @@ I take it out the player, check it twice, replace
 to wait ninety days for an 8-bit fighting game
 
 I rock a ProYo at school, demonstrate lots of cool
-manouvers, come back, and watch Animal Hospital
+manoeuvres, come back, and watch Animal Hospital
 the pimp of the school disco, why the fuck not
 I would talk to girls and raid the fuck out of the tuck shop
 
-Curtains on my head suited me nicely
-(Bring back the bucket hat)
-Take me back to Gladiators on a Saturday night please
-(Bring back the bucket hat)
-A little dose of Vengaboys and some Five Alive please
-(Bring back the bucket hat)
-Taking up permanent residence in the nineties
-(Bring back the bucket hat)
+C:: Windows 95
+M::   Curtains on my head suited me nicely
+A::     Bring back the bucket hat
+C:: Sega Megadrive
+M::   Take me back to Gladiators on a Saturday night please
+A::     Bring back the bucket hat
+C:: Nintendo 64
+M::   A little dose of Vengaboys and some Five Alive please
+A::     Bring back the bucket hat
+C:: When Shearer used to score
+M::   Taking up permanent residence in the nineties
+A::     Bring back the bucket hat
 
-Catching Pokémon and [??], stealing the Pogs
+G:: Catching Pokémon and [??], stealing the Pogs
 back when you got action figures in a cereal box
 Shaggy and Babylon Zoo on Top of the Pops
 Zoë Ball and Jamie Theakston fucking rocking my socks
@@ -42,7 +46,7 @@ watching 5 in my room, see what's on past ten
 me and my friends, we were all Banana Men
 except the one with no legs, he was SuperTed
 
-Power Ranger blue or red, well I was always black
+Power Ranger blue or red, well I was always Black
 Crash Bandicoot to distract from the chore in hand
 that's when I thought Radiohead were a boring band
 my Tamagotchi's way better, yours is gash
@@ -52,9 +56,9 @@ up, down, square, x, circle, x, triangle
 back then, back when I couldn't even wank yet
 I was eight years old and still slept with a blanket
 
-Curtains on my head suited me nicely…
+M:: Curtains on my head suited me nicely…
 
-I hadn't even heard of smoke or booze or coke abuse
+M:: I hadn't even heard of smoke or booze or coke abuse
 the furthest I would go is Hooch or maybe downing loads of Opal Fruits
 finding idols was not that hard, I'd attack art in my Fun House
 like Neil Buchanan and Pat Sharp
@@ -74,9 +78,9 @@ I was more about Biff and Chip than spitting spits and killing Crips
 reminisce a little bit about being little kids
 funny how far twenty years does bring you, isn't it?
 
-Curtains on my head suited me nicely…
+M:: Curtains on my head suited me nicely…
 
-Concordes in the sky
+C:: Concordes in the sky
 Steve Irwin was alive
 when Blair still had respect
 Twin Towers were erect

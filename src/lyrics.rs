@@ -4,6 +4,7 @@ use std::collections::HashMap;
 
 lazy_static! {
     static ref ALIASES: HashMap<&'static str, &'static str> = HashMap::from([
+        ("A", "Pitch-corrected singer"),
         ("B", "Both"),
         ("C", "Chorus"),
         ("G", "Gishnchips"),
