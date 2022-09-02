@@ -88,7 +88,8 @@ impl ReadFromDir for Album {
             .captures(&folder_name)
             .expect("could not parse folder name");
 
-        let date = chrono::NaiveDate::parse_from_str(&re_match[1], "%F").expect("could not parse album release date");
+        let date = chrono::NaiveDate::parse_from_str(&re_match[1], "%F")
+            .expect("could not parse album release date");
 
         Some(Album {
             date: date,

@@ -1,5 +1,5 @@
 use crate::albums::Album;
-use maud::{html, PreEscaped, Markup, DOCTYPE};
+use maud::{html, Markup, PreEscaped, DOCTYPE};
 use pulldown_cmark::{html, Parser};
 use std::fs;
 use std::path::Path;
@@ -47,7 +47,7 @@ fn lyrics(albums: &Vec<Album>) -> Markup {
                 }
             }
         }
-    )
+    );
 }
 
 fn contents(albums: &Vec<Album>) -> Markup {
