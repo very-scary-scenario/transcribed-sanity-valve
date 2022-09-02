@@ -1,4 +1,5 @@
 use crate::lyrics::Line;
+use chrono::NaiveDate;
 use regex::Regex;
 use std::cmp::Ordering;
 use std::fs;
@@ -71,7 +72,7 @@ impl ReadFromDir for Track {
 
 #[derive(PartialEq, Eq, PartialOrd, Ord)]
 pub struct Album {
-    pub year: u16,
+    pub date: NaiveDate,
     pub title: String,
     pub tracks: Vec<Track>,
 }
@@ -82,12 +83,15 @@ impl ReadFromDir for Album {
             .file_name()
             .into_string()
             .expect("could not convert folder name");
-        let re_match = Regex::new(r"^(\d+) - (.*)$")
+        let re_match = Regex::new(r"^(\d{4}-\d{2}-\d{2}) - (.*)$")
             .unwrap()
             .captures(&folder_name)
             .expect("could not parse folder name");
+
+        let date = chrono::NaiveDate::parse_from_str(&re_match[1], "%F").expect("could not parse album release date");
+
         Some(Album {
-            year: re_match[1].parse().expect("could not find album year"),
+            date: date,
             title: String::from(&re_match[2]),
             tracks: read_dir(
                 &entry
